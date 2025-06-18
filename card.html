@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matheus Rosa | Full-Stack Developer</title>
+    <style>
+        :root {
+            --black-900: #0A0A0A;
+            --black-800: #161616;
+            --black-700: #252525;
+            --accent: #E8E8E8;
+            --highlight: rgba(255, 255, 255, 0.05);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        body {
+            background-color: var(--black-900);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: white;
+        }
+        
+        .card {
+            background: var(--black-800);
+            border-radius: 16px;
+            width: 100%;
+            max-width: 480px;
+            padding: 40px;
+            text-align: center;
+            border: 1px solid var(--black-700);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+        }
+        
+        .name-highlight {
+            background: var(--highlight);
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid var(--black-700);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+        }
+        
+        h1 {
+            font-weight: 600;
+            font-size: 28px;
+            letter-spacing: -0.5px;
+            background: linear-gradient(90deg, #FFF, #CCC);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .title {
+            color: var(--accent);
+            opacity: 0.7;
+            margin-bottom: 30px;
+            font-weight: 400;
+            font-size: 14px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+        
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--black-700), transparent);
+            margin: 30px 0;
+        }
+        
+        .contact-grid {
+            display: grid;
+            gap: 14px;
+            margin-bottom: 30px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: var(--accent);
+            opacity: 0.9;
+            font-size: 15px;
+        }
+        
+        .contact-item i {
+            width: 20px;
+            opacity: 0.6;
+        }
+        
+        .btn-container {
+            display: grid;
+            gap: 12px;
+        }
+        
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            border: 1px solid var(--black-700);
+            background: var(--black-700);
+            color: var(--accent);
+        }
+        
+        .btn i {
+            margin-right: 12px;
+            font-size: 16px;
+        }
+        
+        .btn:hover {
+            background: var(--black-600);
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 32px;
+        }
+        
+        .skill-tag {
+            background: var(--black-700);
+            color: var(--accent);
+            padding: 7px 16px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+            border: 1px solid var(--black-600);
+        }
+        
+        .footer {
+            margin-top: 40px;
+            color: var(--accent);
+            opacity: 0.4;
+            font-size: 11px;
+            letter-spacing: 0.5px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="card">
+        <div class="name-highlight">
+            <h1>Matheus Rosa das Neves</h1>
+        </div>
+        <p class="title">Desenvolvedor Full-Stack</p>
+        
+        <div class="contact-grid">
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Criciúma, Santa Catarina</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <span>Matheusrosadasneves6@gmail.com</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <span>(48) 99606-0279</span>
+            </div>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <div class="btn-container">
+            <a href="https://www.linkedin.com/in/seuperfil" class="btn">
+                <i class="fab fa-linkedin-in"></i> LinkedIn
+            </a>
+            
+            <a href="https://github.com/seuusuario" class="btn">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+            
+            <a href="https://1drv.ms/w/c/acc41b791c80eded/EW7il-Gbt2tFoCCAmPIfHNABxm-xgBGdzEWUuiul9OUbVg?e=Il4a0z" class="btn">
+                <i class="fas fa-file-alt"></i> Ver Currículo
+            </a>
+        </div>
+        
+        <div class="skills">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Java</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">React</span>
+            <span class="skill-tag">C++</span>
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">SQL</span>
+        </div>
+        
+        <div class="footer">
+            Disponível para oportunidades profissionais
+        </div>
+    </div>
+</body>
+</html>
