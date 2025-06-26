@@ -1,213 +1,456 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matheus Rosa | Full-Stack Developer</title>
+    <title>Nosso Quiz do Amor</title>
     <style>
-        :root {
-            --black-900: #0A0A0A;
-            --black-800: #161616;
-            --black-700: #252525;
-            --accent: #E8E8E8;
-            --highlight: rgba(255, 255, 255, 0.05);
-        }
-        
-        * {
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            text-align: center;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-image: url('https://i.pinimg.com/originals/95/29/15/95291529b58d093b28670d6629b81b5b.gif');
+            background-size: 100%;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: repeat;
         }
         
-        body {
-            background-color: var(--black-900);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            color: white;
-        }
-        
-        .card {
-            background: var(--black-800);
-            border-radius: 16px;
-            width: 100%;
-            max-width: 480px;
-            padding: 40px;
-            text-align: center;
-            border: 1px solid var(--black-700);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
-        }
-        
-        .name-highlight {
-            background: var(--highlight);
-            display: inline-block;
-            padding: 12px 24px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            border: 1px solid var(--black-700);
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(255, 20, 147, 0.5);
+            margin-top: 30px;
+            margin-bottom: 30px;
+            border: 2px solid #ff1493;
         }
         
         h1 {
-            font-weight: 600;
-            font-size: 28px;
-            letter-spacing: -0.5px;
-            background: linear-gradient(90deg, #FFF, #CCC);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #ff1493;
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(255, 20, 147, 0.7);
+            letter-spacing: 1px;
         }
         
-        .title {
-            color: var(--accent);
-            opacity: 0.7;
-            margin-bottom: 30px;
-            font-weight: 400;
-            font-size: 14px;
-            letter-spacing: 1.5px;
+        .heart {
+            color: #ff1493;
+            animation: pulse 1.5s infinite;
+            text-shadow: 0 0 10px rgba(255, 20, 147, 0.7);
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+        
+        .timer {
+            font-size: 1.3em;
+            margin-bottom: 25px;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 10px;
+            display: inline-block;
+            border: 1px solid #ff1493;
+            color: #ff69b4;
+            box-shadow: 0 0 10px rgba(255, 20, 147, 0.3);
+        }
+        
+        .question-container {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+            box-shadow: 0 5px 20px rgba(255, 20, 147, 0.3);
+            border: 1px solid #ff1493;
+        }
+        
+        .question {
+            font-size: 1.4em;
+            margin-bottom: 25px;
+            color: #ff69b4;
+        }
+        
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .option {
+            background-color: rgba(255, 20, 147, 0.2);
+            border: 2px solid #ff1493;
+            border-radius: 10px;
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #ffffff;
+            font-size: 1.1em;
+        }
+        
+        .option:hover {
+            background-color: rgba(255, 20, 147, 0.5);
+            transform: scale(1.03);
+            box-shadow: 0 0 15px rgba(255, 20, 147, 0.5);
+        }
+        
+        .image-container {
+  margin: 25px auto;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(255, 20, 147, 0.5);
+  border: 2px solid #ff1493;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 400px;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+        }
+        
+        .image-container img:hover {
+            transform: scale(1.05);
+        }
+        
+        .result {
+            font-size: 1.6em;
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid #ff1493;
+        }
+        
+        .perfect {
+            background-color: rgba(0, 100, 0, 0.3);
+            color: #7fffd4;
+            box-shadow: 0 0 20px rgba(127, 255, 212, 0.5);
+        }
+        
+        .good {
+            background-color: rgba(255, 215, 0, 0.3);
+            color: #ffd700;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+        
+        .bad {
+            background-color: rgba(220, 20, 60, 0.3);
+            color: #ff6347;
+            box-shadow: 0 0 20px rgba(220, 20, 60, 0.5);
+        }
+        
+        .progress-container {
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            margin: 25px 0;
+            height: 25px;
+            border: 1px solid #ff1493;
+            box-shadow: 0 0 10px rgba(255, 20, 147, 0.3);
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #ff1493, #ff69b4);
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.5s;
+            box-shadow: 0 0 10px rgba(255, 20, 147, 0.7);
+        }
+        
+        .restart-btn {
+            background: linear-gradient(45deg, #ff1493, #c71585);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.1em;
+            margin-top: 25px;
+            transition: all 0.3s;
             text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(255, 20, 147, 0.4);
         }
         
-        .divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--black-700), transparent);
-            margin: 30px 0;
+        .restart-btn:hover {
+            background: linear-gradient(45deg, #c71585, #ff1493);
+            transform: scale(1.05);
+            box-shadow: 0 7px 20px rgba(255, 20, 147, 0.6);
         }
         
-        .contact-grid {
-            display: grid;
-            gap: 14px;
-            margin-bottom: 30px;
+        .hidden {
+            display: none;
         }
         
-        .contact-item {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            color: var(--accent);
-            opacity: 0.9;
-            font-size: 15px;
+        .confetti {
+            position: fixed;
+            width: 15px;
+            height: 15px;
+            background-color: #ff1493;
+            border-radius: 50%;
+            animation: fall 5s linear infinite;
+            box-shadow: 0 0 10px rgba(255, 20, 147, 0.7);
         }
         
-        .contact-item i {
-            width: 20px;
-            opacity: 0.6;
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
         }
         
-        .btn-container {
-            display: grid;
-            gap: 12px;
+        .glow-text {
+            text-shadow: 0 0 10px rgba(255, 20, 147, 0.7);
         }
         
-        .btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 14px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 15px;
-            transition: all 0.3s ease;
-            border: 1px solid var(--black-700);
-            background: var(--black-700);
-            color: var(--accent);
-        }
-        
-        .btn i {
-            margin-right: 12px;
-            font-size: 16px;
-        }
-        
-        .btn:hover {
-            background: var(--black-600);
-            transform: translateY(-2px);
-            border-color: rgba(255, 255, 255, 0.1);
-        }
-        
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 32px;
-        }
-        
-        .skill-tag {
-            background: var(--black-700);
-            color: var(--accent);
-            padding: 7px 16px;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 500;
-            border: 1px solid var(--black-600);
-        }
-        
-        .footer {
-            margin-top: 40px;
-            color: var(--accent);
-            opacity: 0.4;
-            font-size: 11px;
-            letter-spacing: 0.5px;
+        .intro-text {
+            font-size: 1.2em;
+            margin-bottom: 25px;
+            color: #ff69b4;
+            line-height: 1.6;
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="card">
-        <div class="name-highlight">
-            <h1>Matheus Rosa das Neves</h1>
-        </div>
-        <p class="title">Desenvolvedor Full-Stack</p>
+    <div class="container">
+        <h1>Quiz do Nosso Amor <span class="heart">❤</span></h1>
         
-        <div class="contact-grid">
-            <div class="contact-item">
-                <i class="fas fa-map-marker-alt"></i>
-                <span>Criciúma, Santa Catarina</span>
-            </div>
-            <div class="contact-item">
-                <i class="fas fa-envelope"></i>
-                <span>Matheusrosadasneves6@gmail.com</span>
-            </div>
-            <div class="contact-item">
-                <i class="fas fa-phone"></i>
-                <span>(48) 99606-0279</span>
-            </div>
+        <div class="timer" id="relationship-timer">
+            <span class="glow-text">Estamos juntos há:</span> <span id="timer">0 dias, 0 horas, 0 minutos, 0 segundos</span>
         </div>
         
-        <div class="divider"></div>
+        <div id="quiz-start">
+            <div class="image-container">
+                <!-- Substitua pela foto de vocês dois -->
+                <img src="https://cdn.discordapp.com/attachments/1387622320750727300/1387622488179085424/b40bc763-aca3-4bb1-877f-7740a56e97b3.jpg?ex=685e03a5&is=685cb225&hm=7a2385afef0624c66ccc60662df2c86136ba71f3068293731eae5933ee38b6d2&" alt="Nossa foto">
+            </div>
+            <p class="intro-text">Esse quiz foi feito especialmente para você, amor!<br>
+            Vamos ver o quanto você sabe sobre nós dois?<br>
+            Cada resposta certa é uma prova do nosso amor!</p>
+            <button class="restart-btn" onclick="startQuiz()">Começar Quiz</button>
+        </div>
         
-        <div class="btn-container">
-            <a href="https://www.linkedin.com/in/seuperfil" class="btn">
-                <i class="fab fa-linkedin-in"></i> LinkedIn
-            </a>
+        <div id="quiz-container" class="hidden">
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
             
-            <a href="https://github.com/seuusuario" class="btn">
-                <i class="fab fa-github"></i> GitHub
-            </a>
+            <div class="question-container">
+                <div class="question" id="question"></div>
+                <div class="options" id="options"></div>
+            </div>
             
-            <a href="https://1drv.ms/w/c/acc41b791c80eded/EW7il-Gbt2tFoCCAmPIfHNABxm-xgBGdzEWUuiul9OUbVg?e=Il4a0z" class="btn">
-                <i class="fas fa-file-alt"></i> Ver Currículo
-            </a>
+            <div class="image-container hidden" id="question-image">
+                <!-- Imagem será adicionada dinamicamente -->
+            </div>
         </div>
         
-        <div class="skills">
-            <span class="skill-tag">Python</span>
-            <span class="skill-tag">Java</span>
-            <span class="skill-tag">JavaScript</span>
-            <span class="skill-tag">React</span>
-            <span class="skill-tag">C++</span>
-            <span class="skill-tag">Node.js</span>
-            <span class="skill-tag">SQL</span>
-        </div>
-        
-        <div class="footer">
-            Disponível para oportunidades profissionais
+        <div id="quiz-result" class="hidden">
+            <div class="result" id="result"></div>
+            <div class="image-container">
+                <!-- Imagem de resultado -->
+                <img src="https://cdn.discordapp.com/attachments/1387622320750727300/1387629415806271639/6b8341ba-2c9f-4b8b-9074-2c15d710765e.jpg?ex=685e0a19&is=685cb899&hm=80e1a0fa9eee7d6bebcd5090535cf872eaf8a4c82f335b8af30582708a620319&" alt="Resultado">
+            </div>
+            <button class="restart-btn" onclick="restartQuiz()">Jogar Novamente</button>
         </div>
     </div>
+
+    <script>
+        // Data do início do relacionamento (substitua pela sua data)
+        const startDate = new Date("2023-06-26T12:30:00");
+        
+        // Perguntas do quiz (substitua pelas suas perguntas)
+        const questions = [
+            {
+                question: "Qual foi meu presente favorito?",
+                options: ["Elden ring", "Polaroid", "Cajado do flapjack", "Carta manuscrita"],
+                correctAnswer: 2,
+                image: "https://cdn.discordapp.com/attachments/1387622320750727300/1387625418949132389/d7be0352-2f72-4044-989d-6c4cc03931f0.jpg?ex=685e0660&is=685cb4e0&hm=956f792115cae9439e32a114360ee937598c7a49aff8e3261d14b999f85b0721&" // URL da imagem relacionada
+            },
+            {
+                question: "O que sempre me faz rir?",
+                options: ["Memes de gatos", "te irritar", "criança se ferrando", "valorant"],
+                correctAnswer: 1,
+                image: "https://cdn.discordapp.com/attachments/1387622320750727300/1387626911836147953/eca67007-6fe1-4046-8350-46c0d0f8981e.jpg?ex=685e07c4&is=685cb644&hm=379f8d7e25d5c3dc1588f267e5caab57add4743b92499bfa9fa98714b24f090b&"
+            },
+            {
+                question: "Onde foi nosso primeiro beijo?",
+                options: ["No cinema", "No parque", "Na sua casa", "No mc donalds"],
+                correctAnswer: 2,
+                image: "https://cdn.discordapp.com/attachments/1387622320750727300/1387627341035081821/f2e3fd21-08a8-4c60-94c4-d6e9404c47cf.jpg?ex=685e082a&is=685cb6aa&hm=0f41d0f2821dbfd2e0eec71540dd45414b4c5a1a75435f2bd429c1e2f5b672eb&"
+            },
+            {
+                question: "Qual é minha comida favorita que você faz?",
+                options: ["tudo que você cozinha", "Bolo de chocolate", "Strogonoff", "Panquecas"],
+                correctAnswer: 0,
+                image: "https://cdn.discordapp.com/attachments/1387622320750727300/1387628641478774784/964c179b-04c7-41c5-b861-8707e1449303.jpg?ex=685e0961&is=685cb7e1&hm=2ad0cb597e958b63e6dd40bddeeb8076b0b6926afec14d0c3864f9c2a6dd031c&"
+            },
+            {
+                question: "Qual foi nossa primeira música 'de casal'?",
+                options: ["Perfect - Ed Sheeran", "Die For You - The Weeknd", "Thinking Out Loud - Ed Sheeran", "A Thousand Years - Christina Perri"],
+                correctAnswer: 1,
+                image: "https://cdn.discordapp.com/attachments/1387622320750727300/1387627854329544786/c051e9d5-377b-40e1-ae5e-43cc5c18baa8.jpg?ex=685e08a5&is=685cb725&hm=da657381062bf70721922b596c9a4c3e3261da745a255cd4df82ce3af4e55b6b&"
+            }
+        ];
+        
+        let currentQuestion = 0;
+        let score = 0;
+        let timerInterval;
+        
+        // Atualiza o contador de relacionamento
+        function updateRelationshipTimer() {
+            const now = new Date();
+            const diff = now - startDate;
+            
+            const seconds = Math.floor(diff / 1000) % 60;
+            const minutes = Math.floor(diff / (1000 * 60)) % 60;
+            const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            
+            document.getElementById('timer').textContent = 
+                `${days} dias, ${hours} horas, ${minutes} minutos, ${seconds} segundos`;
+        }
+        
+        // Inicia o timer quando a página carrega
+        timerInterval = setInterval(updateRelationshipTimer, 1000);
+        
+        // Inicia o quiz
+        function startQuiz() {
+            document.getElementById('quiz-start').classList.add('hidden');
+            document.getElementById('quiz-container').classList.remove('hidden');
+            showQuestion();
+        }
+        
+        // Mostra a pergunta atual
+        function showQuestion() {
+            const questionObj = questions[currentQuestion];
+            document.getElementById('question').textContent = questionObj.question;
+            
+            const optionsDiv = document.getElementById('options');
+            optionsDiv.innerHTML = '';
+            
+            questionObj.options.forEach((option, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.classList.add('option');
+                optionDiv.textContent = option;
+                optionDiv.onclick = () => selectAnswer(index);
+                optionsDiv.appendChild(optionDiv);
+            });
+            
+            // Atualiza barra de progresso
+            const progress = (currentQuestion / questions.length) * 100;
+            document.getElementById('progress-bar').style.width = `${progress}%`;
+            
+            // Mostra imagem relacionada se existir
+            const imageContainer = document.getElementById('question-image');
+            if (questionObj.image) {
+                imageContainer.innerHTML = `<img src="${questionObj.image}" alt="Imagem da pergunta">`;
+                imageContainer.classList.remove('hidden');
+            } else {
+                imageContainer.classList.add('hidden');
+            }
+        }
+        
+        // Seleciona uma resposta
+        function selectAnswer(answerIndex) {
+            const questionObj = questions[currentQuestion];
+            const options = document.querySelectorAll('.option');
+            
+            // Desabilita todas as opções
+            options.forEach(option => {
+                option.style.pointerEvents = 'none';
+            });
+            
+            // Marca a resposta selecionada
+            options[answerIndex].style.backgroundColor = answerIndex === questionObj.correctAnswer ? 'rgba(0, 255, 0, 0.3)' : 'rgba(255, 0, 0, 0.3)';
+            options[answerIndex].style.borderColor = answerIndex === questionObj.correctAnswer ? '#00ff00' : '#ff0000';
+            
+            // Marca a resposta correta
+            options[questionObj.correctAnswer].style.backgroundColor = 'rgba(0, 255, 0, 0.3)';
+            options[questionObj.correctAnswer].style.borderColor = '#00ff00';
+            
+            // Atualiza pontuação
+            if (answerIndex === questionObj.correctAnswer) {
+                score++;
+            }
+            
+            // Avança para próxima pergunta ou mostra resultado
+            setTimeout(() => {
+                currentQuestion++;
+                if (currentQuestion < questions.length) {
+                    showQuestion();
+                } else {
+                    showResult();
+                }
+            }, 1500);
+        }
+        
+        // Mostra o resultado final
+        function showResult() {
+            document.getElementById('quiz-container').classList.add('hidden');
+            document.getElementById('quiz-result').classList.remove('hidden');
+            
+            const resultDiv = document.getElementById('result');
+            const percentage = (score / questions.length) * 100;
+            
+            if (percentage >= 80) {
+                resultDiv.textContent = `Parabéns, amor! Você acertou ${score} de ${questions.length}! Você é minha alma gêmea! ❤❤❤`;
+                resultDiv.className = 'result perfect';
+                createConfetti();
+            } else if (percentage >= 50) {
+                resultDiv.textContent = `Você acertou ${score} de ${questions.length}! Quase perfeito, mas ainda temos segredinhos... 😘`;
+                resultDiv.className = 'result good';
+            } else {
+                resultDiv.textContent = `Você acertou ${score} de ${questions.length}! Hmm... precisamos passar mais tempo juntos, amor! 💋`;
+                resultDiv.className = 'result bad';
+            }
+        }
+        
+        // Reinicia o quiz
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            document.getElementById('quiz-result').classList.add('hidden');
+            document.getElementById('quiz-start').classList.remove('hidden');
+        }
+        
+        // Cria efeito de confete
+        function createConfetti() {
+            const colors = ['#ff1493', '#ff69b4', '#ff00ff', '#c71585', '#db7093', '#ffc0cb'];
+            
+            for (let i = 0; i < 150; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = Math.random() * 15 + 5 + 'px';
+                confetti.style.height = confetti.style.width;
+                confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
+                confetti.style.animationDelay = Math.random() * 2 + 's';
+                
+                document.body.appendChild(confetti);
+                
+                // Remove o confete após a animação
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000);
+            }
+        }
+        
+        // Inicializa o contador
+        updateRelationshipTimer();
+    </script>
 </body>
 </html>
